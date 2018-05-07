@@ -1,13 +1,23 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo">GPI</a>
+    <a href="#" class="brand-logo">
+      <img src="../../assets/GPI-logo.png" alt="HTML5 Icon" style="width:80px;height:64px;">
+    </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">Inicio</a></li>
-      <li><a href="badges.html">Bodega</a></li>
-      <li><a href="collapsible.html">Login</a></li>
+      <li><a href="#"><i class="material-icons left">home</i>Inicio</a></li>
+      <li><a href="/bodega"><i class="material-icons left">storage</i>Bodega</a></li>
+      <li><a href="/login"><i class="material-icons left">account_circle</i>Log In</a></li>
     </ul>
   </div>
 </nav>
+
+
+<!-- <select materialize="material_select">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+</select> -->
 
 <router-outlet></router-outlet>
 
@@ -15,13 +25,16 @@
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Aqui va la info.</h5>
-        <p class="grey-text text-lighten-4">Añadir informacion aqui.</p>
+        <h5 class="white-text">Dirección</h5>
+        <p class="grey-text text-lighten-4">Alfredo Barros Errázuriz 1964,<br/>
+          Piso 17, oficina 1701,<br/>
+          Providencia, Santiago.<br/>
+          <a href="mailto:gpi@gpi.cl">Contactanos</a></p>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.google.com/maps/place/Alfredo+Barros+Errázuriz+1964,+Providencia,+Región+Metropolitana/@-33.426809,-70.612087,15z/data=!4m5!3m4!1s0x9662cf6510419091:0x16a68f1294205863!8m2!3d-33.4268092!4d-70.6120873?hl=es-ES">Ubicación</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
