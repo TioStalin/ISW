@@ -1,5 +1,9 @@
-.brand-logo {
+body{
+  background-image: url('../assets/fondo-general.jpg');
+}
 
+#fondo{
+  background: white;
 }
 
 .page-footer {

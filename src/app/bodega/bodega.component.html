@@ -1,77 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col s6 offset-s6">
-      <table class="highlight">
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-              <th>Item Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-        </tbody>
-      </table>
-    <div>
-  <div>
-<div>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col s6" style="float: left;">
+        <table class="highlight">
+          <thead>
+            <tr>
+                <th>Material</th>
+                <th>Cantidad</th>
+                <th>Descripcion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let resultados of bodega">
+              <td>{{resultados.Nombre}}</td>
+              <td>{{resultados.Cantidad}}</td>
+              <td *ngIf = "resultados.Descripcion != null">{{resultados.Descripcion}}</td>
+              <td *ngIf = "resultados.Descripcion == null">Sin Descripción</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col s6 l5" style="float: right;">
+        <div class="section">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <p class="mostrar">memes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,30 @@
-<nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo">
-      <img src="../../assets/GPI-logo.png" alt="HTML5 Icon" style="width:80px;height:64px;">
-    </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#"><i class="material-icons left">home</i>Inicio</a></li>
-      <li><a href="/bodega"><i class="material-icons left">storage</i>Bodega</a></li>
-      <li><a href="/login"><i class="material-icons left">account_circle</i>Log In</a></li>
-    </ul>
-  </div>
-</nav>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">
+        <img src="../../assets/GPI-logo.png" alt="HTML5 Icon" style="width:80px;height:64px;">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#"><i class="material-icons left">home</i>Inicio</a></li>
+        <li *ngIf = "login"><a href="/bodega"><i class="material-icons left">storage</i>Bodega</a></li>
+        <li *ngIf = "login"><a href="/ordenes"><i class="material-icons left">attach_money</i>Compras</a></li>
+        <li *ngIf = "login"><a href="#"><i class="material-icons left">cancel</i>Log Out</a></li>
+        <li *ngIf = "!login"><a href="/login"><i class="material-icons left">account_circle</i>Log In</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div> -->
 
 <!-- <select materialize="material_select">
     <option value="" disabled selected>Choose your option</option>
@@ -19,33 +33,38 @@
     <option value="3">Option 3</option>
 </select> -->
 
-<router-outlet></router-outlet>
+  <div id="fondo" class="container">
+    <!-- <div class="row"> -->
+      <router-outlet></router-outlet>
+    <!-- </div> -->
+  </div>
 
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Dirección</h5>
-        <p class="grey-text text-lighten-4">Alfredo Barros Errázuriz 1964,<br/>
-          Piso 17, oficina 1701,<br/>
-          Providencia, Santiago.<br/>
-          <a href="mailto:gpi@gpi.cl">Contactanos</a></p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.google.com/maps/place/Alfredo+Barros+Errázuriz+1964,+Providencia,+Región+Metropolitana/@-33.426809,-70.612087,15z/data=!4m5!3m4!1s0x9662cf6510419091:0x16a68f1294205863!8m2!3d-33.4268092!4d-70.6120873?hl=es-ES">Ubicación</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
+  <footer class="page-footer">
     <div class="container">
-    © 2018 GPI Ltda.
-    <a class="grey-text text-lighten-4 right" href="#!">Más links</a>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Dirección</h5>
+          <p class="grey-text text-lighten-4">Alfredo Barros Errázuriz 1964,<br/>
+            Piso 17, oficina 1701,<br/>
+            Providencia, Santiago.<br/>
+            <a href="mailto:gpi@gpi.cl">Contactanos</a></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.google.com/maps/place/Alfredo+Barros+Errázuriz+1964,+Providencia,+Región+Metropolitana/@-33.426809,-70.612087,15z/data=!4m5!3m4!1s0x9662cf6510419091:0x16a68f1294205863!8m2!3d-33.4268092!4d-70.6120873?hl=es-ES">Ubicación</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 GPI Ltda.
+      <a class="grey-text text-lighten-4 right" href="#!">Más links</a>
+      </div>
+    </div>
+  </footer>
+</body>

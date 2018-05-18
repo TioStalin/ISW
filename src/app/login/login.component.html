@@ -1,3 +1,24 @@
-<p>
-  login works!
-</p>
+<div class="section"></div>
+<div class="section"></div>
+<div class="container">
+  <div class="row">
+    <div class="z-depth-4 col s6 offset-s3">
+      <i class="large material-icons">account_circle</i><br>
+      Ingresa a tu cuenta<br>
+      <div class="input-field col s12">
+        <input id="usuario" [(ngModel)]="user" type="text" class="validate">
+        <label for="usuario">Usuario</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="password" [(ngModel)]="pass" type="password" class="validate">
+        <label for="password">Contraseña</label>
+      </div>
+      <div class="row">
+        <button (click)="obtenerUsuario()" class="btn waves-effect waves-light">Entrar
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section"></div>
