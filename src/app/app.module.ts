@@ -10,6 +10,8 @@ import { MaterializeModule } from 'angular2-materialize';
 import { HomeComponent } from './home/home.component';
 import { BodegaComponent } from './bodega/bodega.component';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './service/login.service';
+import { ComprasComponent } from './compras/compras.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     HomeComponent,
     BodegaComponent,
-    LoginComponent
+    LoginComponent,
+    ComprasComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     MaterializeModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

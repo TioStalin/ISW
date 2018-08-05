@@ -52,5 +52,34 @@
   </div>
 </section>
 <section *ngIf="login">
-  funciono!!
+  <div class="section">
+    <div class="container">
+      <h3>Hola {{nombre}}</h3>
+      <div class="col s6">
+        <div *ngIf = "cargo == 1">
+          <h4>Administrador</h4>
+        </div>
+        <div *ngIf = "cargo == 2">
+          <h4>Bodeguero</h4>
+        </div>
+        <div *ngIf = "cargo == 3">
+          <h4>Trabajador</h4>
+        </div>
+        <div *ngIf = "cargo == 4">
+          <h4>Encargado de compras</h4>
+        </div>
+        Email: {{mail}}
+
+      </div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+  </div>
 </section>

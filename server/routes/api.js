@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  database : 'IntentoDeSoftware',
+  database : 'mydb',
   port     : 8889
 });
 
@@ -20,10 +20,20 @@ router.get('/', (req, res) => {
 });
 
 router.get('/bodega', function (req, res) {
-   connection.query('select * from bodega', function (error, results, fields) {
+   connection.query('select * from Material', function (error, results, fields) {
    if (error) throw error;
    res.send(JSON.stringify(results));
  });
 });
+
+router.post('/usuario', function (req, res) {
+  consulta = 'select * from usuario where Nombre = "' + req.body.nombre + '" and Contrasena = "' + req.body.contrasena + '"';
+  connection.query(consulta, function (error, results, fields) {
+  if (error) throw error;
+  return res.send(JSON.stringify(results));
+  });
+});
+
+// var query = 'insert into Material (Nombre, Cantidad, Descripcion) values ("' + req.body.nombre + '" ,' + req.body.cantidad + ' ,"' + req.body.descripcion +'" )';
 
 module.exports = router;

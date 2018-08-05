@@ -7,8 +7,8 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="#"><i class="material-icons left">home</i>Inicio</a></li>
         <li *ngIf = "login"><a href="/bodega"><i class="material-icons left">storage</i>Bodega</a></li>
-        <li *ngIf = "login"><a href="/ordenes"><i class="material-icons left">attach_money</i>Compras</a></li>
-        <li *ngIf = "login"><a href="#"><i class="material-icons left">cancel</i>Log Out</a></li>
+        <li *ngIf = "login && cargo == 1"><a href="/compras"><i class="material-icons left">attach_money</i>Compras</a></li>
+        <li *ngIf = "login"><a href="#" (click)="salir()"><i class="material-icons left">cancel</i>Log Out</a></li>
         <li *ngIf = "!login"><a href="/login"><i class="material-icons left">account_circle</i>Log In</a></li>
       </ul>
     </div>

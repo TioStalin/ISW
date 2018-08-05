@@ -14,8 +14,8 @@
             <tr *ngFor = "let resultados of bodega">
               <td>{{resultados.Nombre}}</td>
               <td>{{resultados.Cantidad}}</td>
-              <td *ngIf = "resultados.Descripcion != null">{{resultados.Descripcion}}</td>
-              <td *ngIf = "resultados.Descripcion == null">Sin Descripción</td>
+              <td *ngIf = "resultados.Descripcion == null || resultados.Descripcion == ''">Sin Descripción</td>
+              <td *ngIf = "resultados.Descripcion != null && resultados.Descripcion != ''">{{resultados.Descripcion}}</td>
             </tr>
           </tbody>
         </table>
@@ -27,5 +27,35 @@
         </div>
       </div>
     </div>
+    <!-- <section *ngIf="AQUI DEBE SER EDITABLE POR EL BODEGUERO CENTRAL SOLAMENTE"> -->
+    <section>
+      <h3>Añadir más materiales</h3>
+      <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">build</i>
+            <input id="icon_prefix" [(ngModel)]="nombre" name="nombre" type="text" class="validate">
+            <label for="icon_prefix">Nombre del material</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">exposure_plus_1</i>
+            <input id="icon_telephone" [(ngModel)]="cantidad" name="cantidad" type="number" class="validate" >
+            <label for="icon_telephone">Cantidad</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">subject</i>
+            <textarea id="textarea1" [(ngModel)]="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+            <label for="textarea1">Textarea</label>
+          </div>
+          <button (click)="crearMaterial()" class="btn waves-effect waves-light">Añadir
+            <i class="material-icons right">add</i>
+          </button>
+        </div>
+      </form>
+      </div>
+    </section>
   </div>
 </div>
