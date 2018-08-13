@@ -5,9 +5,9 @@ const router = express.Router();
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'root',
-  database : 'mydb',
-  port     : 8889
+  password : '1234',
+  database : 'mybd',
+  port     : 3306
 });
 
 connection.connect(function(err) {
@@ -34,6 +34,20 @@ router.post('/usuario', function (req, res) {
   });
 });
 
-// var query = 'insert into Material (Nombre, Cantidad, Descripcion) values ("' + req.body.nombre + '" ,' + req.body.cantidad + ' ,"' + req.body.descripcion +'" )';
+router.post('/bodega', function (req, res) {
+  consulta = 'insert into Material (Nombre, Cantidad, Descripcion) values ("' + req.body.nombre + '" ,' + req.body.cantidad + ' ,"' + req.body.descripcion +'" )';
+  connection.query(consulta, function (error, results, fields) {
+  if (error) throw error;
+  return res.send("¡Material creado exitosamente!");
+  });
+});
+
+router.post('/bodega/borrar', function (req, res) {
+  consulta = 'DELETE from  Material where ID_MATERIAL=' + req.body.ID;
+  connection.query(consulta, function (error, results, fields) {
+  if (error) throw error;
+  return res.send("¡Material eliminado exitosamente!");
+  });
+});
 
 module.exports = router;

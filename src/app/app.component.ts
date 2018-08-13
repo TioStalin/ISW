@@ -21,5 +21,6 @@ export class AppComponent implements DoCheck{
   }
   salir(){
     this.loginService.logout();
+    this.login = false;
   }
 }

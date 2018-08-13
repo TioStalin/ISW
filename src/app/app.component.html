@@ -5,11 +5,12 @@
         <img src="../../assets/GPI-logo.png" alt="HTML5 Icon" style="width:80px;height:64px;">
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#"><i class="material-icons left">home</i>Inicio</a></li>
-        <li *ngIf = "login"><a href="/bodega"><i class="material-icons left">storage</i>Bodega</a></li>
-        <li *ngIf = "login && cargo == 1"><a href="/compras"><i class="material-icons left">attach_money</i>Compras</a></li>
-        <li *ngIf = "login"><a href="#" (click)="salir()"><i class="material-icons left">cancel</i>Log Out</a></li>
-        <li *ngIf = "!login"><a href="/login"><i class="material-icons left">account_circle</i>Log In</a></li>
+        <li><a [routerLink]="['/home']"><i class="material-icons left">home</i>Inicio</a></li>
+        <li *ngIf = "login"><a [routerLink]="['/bodega']"><i class="material-icons left">storage</i>Bodega</a></li>
+        <li *ngIf = "login && cargo == 1"><a [routerLink]="['/compras']"><i class="material-icons left">attach_money</i>Compras</a></li>
+        <li *ngIf = "login && cargo == 1"><a [routerLink]="['/agregar_usuario']"><i class="material-icons left">person_add</i>Agregar usuario</a></li>
+        <li *ngIf = "login"><a [routerLink]="['/home']" (click)="salir()"><i class="material-icons left">cancel</i>Log Out</a></li>
+        <li *ngIf = "!login"><a [routerLink]="['/login']"><i class="material-icons left">account_circle</i>Log In</a></li>
       </ul>
     </div>
   </nav>

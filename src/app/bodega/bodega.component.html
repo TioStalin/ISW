@@ -8,6 +8,7 @@
                 <th>Material</th>
                 <th>Cantidad</th>
                 <th>Descripcion</th>
+                <th></th>
             </tr>
           </thead>
           <tbody>
@@ -16,15 +17,14 @@
               <td>{{resultados.Cantidad}}</td>
               <td *ngIf = "resultados.Descripcion == null || resultados.Descripcion == ''">Sin Descripción</td>
               <td *ngIf = "resultados.Descripcion != null && resultados.Descripcion != ''">{{resultados.Descripcion}}</td>
+              <td><i (click)="borrarMaterial(resultados.ID_MATERIAL)" class="material-icons" style="cursor:pointer;">clear</i></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="col s6 l5" style="float: right;">
-        <div class="section">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          <p class="mostrar">memes</p>
-        </div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p class="mostrar">memes</p>
       </div>
     </div>
     <!-- <section *ngIf="AQUI DEBE SER EDITABLE POR EL BODEGUERO CENTRAL SOLAMENTE"> -->
@@ -48,7 +48,7 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">subject</i>
             <textarea id="textarea1" [(ngModel)]="descripcion" name="descripcion" class="materialize-textarea"></textarea>
-            <label for="textarea1">Textarea</label>
+            <label for="textarea1">Descripci&oacute;n</label>
           </div>
           <button (click)="crearMaterial()" class="btn waves-effect waves-light">Añadir
             <i class="material-icons right">add</i>

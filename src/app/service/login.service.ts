@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http:Http) { }
+  constructor(private http:Http,
+              private router:Router) { }
 
   acceder(usuario: String, pass: String){
     return this.http.post('/api/usuario', {"nombre": usuario, "contrasena": pass})
@@ -22,5 +24,6 @@ export class LoginService {
   }
   logout(){
     localStorage.clear();
+    this.router.navigate(['./login']);
   }
 }

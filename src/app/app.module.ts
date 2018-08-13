@@ -11,7 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { BodegaComponent } from './bodega/bodega.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './service/login.service';
+import { BodegaService } from './service/bodega.service';
 import { ComprasComponent } from './compras/compras.component';
+import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { ComprasComponent } from './compras/compras.component';
     HomeComponent,
     BodegaComponent,
     LoginComponent,
-    ComprasComponent
+    ComprasComponent,
+    AgregarUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,10 @@ import { ComprasComponent } from './compras/compras.component';
     HttpModule,
     MaterializeModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    BodegaService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
