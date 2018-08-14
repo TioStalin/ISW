@@ -17,7 +17,7 @@
               <td>{{resultados.Cantidad}}</td>
               <td *ngIf = "resultados.Descripcion == null || resultados.Descripcion == ''">Sin Descripción</td>
               <td *ngIf = "resultados.Descripcion != null && resultados.Descripcion != ''">{{resultados.Descripcion}}</td>
-              <td><i (click)="borrarMaterial(resultados.ID_MATERIAL)" class="material-icons" style="cursor:pointer;">clear</i></td>
+              <td *ngIf = "cargo == 2"><i (click)="borrarMaterial(resultados.ID_MATERIAL)" class="material-icons" style="cursor:pointer;">clear</i></td>
             </tr>
           </tbody>
         </table>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- <section *ngIf="AQUI DEBE SER EDITABLE POR EL BODEGUERO CENTRAL SOLAMENTE"> -->
-    <section>
+    <section *ngIf="cargo == 2">
       <h3>Añadir más materiales</h3>
       <div class="row">
       <form class="col s12">

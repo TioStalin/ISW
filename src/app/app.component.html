@@ -1,7 +1,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">
+      <a [routerLink]="['/home']" class="brand-logo">
         <img src="../../assets/GPI-logo.png" alt="HTML5 Icon" style="width:80px;height:64px;">
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -54,9 +54,9 @@
           <h5 class="white-text">Links</h5>
           <ul>
             <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.google.com/maps/place/Alfredo+Barros+Errázuriz+1964,+Providencia,+Región+Metropolitana/@-33.426809,-70.612087,15z/data=!4m5!3m4!1s0x9662cf6510419091:0x16a68f1294205863!8m2!3d-33.4268092!4d-70.6120873?hl=es-ES">Ubicación</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            <li><a class="grey-text text-lighten-3" [routerLink]="['/home']">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" [routerLink]="['/home']">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" [routerLink]="['/home']">Link 4</a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +64,7 @@
     <div class="footer-copyright">
       <div class="container">
       © 2018 GPI Ltda.
-      <a class="grey-text text-lighten-4 right" href="#!">Más links</a>
+      <a class="grey-text text-lighten-4 right" [routerLink]="['/home']">Más links</a>
       </div>
     </div>
   </footer>

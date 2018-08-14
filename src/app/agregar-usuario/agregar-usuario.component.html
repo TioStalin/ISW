@@ -9,18 +9,18 @@
           <label for="nombre">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input [(ngModel)]="cantidad" name="cantidad" type="text" class="validate" >
+          <input [(ngModel)]="apellido" name="apellido" type="text" class="validate" >
           <label for="apellido">Apellido</label>
         </div>
       </div>
       <div class="input-field col s6">
         <i class="material-icons prefix">email</i>
-        <input [(ngModel)]="email" name="email" type="text" class="validate">
+        <input [(ngModel)]="email" name="email" type="email" class="validate">
         <label for="email">E-mail</label>
       </div>
       <div class="input-field col s6">
         <i class="material-icons prefix">lock</i>
-        <input [(ngModel)]="password" name="password" class="validate">
+        <input [(ngModel)]="password" name="password" type="password" class="validate">
         <label for="password">Contraseña</label>
       </div>
       <div class="input-field col s6">
@@ -34,6 +34,9 @@
       </div>
       <button (click)="crearUsuario()" class="btn waves-effect waves-light">Crear
         <i class="material-icons right">add</i>
+      </button>
+      <button type="reset" class="btn waves-effect waves-light">Limpiar
+        <i class="material-icons right">clear</i>
       </button>
     </form>
   </div>

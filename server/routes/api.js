@@ -5,9 +5,9 @@ const router = express.Router();
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '1234',
-  database : 'mybd',
-  port     : 3306
+  password : 'root',
+  database : 'mydb',
+  port     : 8889
 });
 
 connection.connect(function(err) {
@@ -39,6 +39,14 @@ router.post('/bodega', function (req, res) {
   connection.query(consulta, function (error, results, fields) {
   if (error) throw error;
   return res.send("¡Material creado exitosamente!");
+  });
+});
+
+router.post('/agregar', function (req, res) {
+  consulta = 'insert into Usuario (Nombre, Cargo, Contrasena, Apellido, Mail) values ("' + req.body.nombre + '" ,' + req.body.cargo + ' ,"' + req.body.password +'", "' + req.body.apellido +'", "' + req.body.email +'")';
+  connection.query(consulta, function (error, results, fields) {
+  if (error) throw error;
+  return res.send("¡Usuario creado exitosamente!");
   });
 });
 
