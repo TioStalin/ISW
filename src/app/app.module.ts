@@ -12,6 +12,7 @@ import { BodegaComponent } from './bodega/bodega.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './service/login.service';
 import { BodegaService } from './service/bodega.service';
+import { UsuarioService } from './service/usuario.service';
 import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 
@@ -35,6 +36,7 @@ import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.compo
   providers: [
     LoginService,
     BodegaService,
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })

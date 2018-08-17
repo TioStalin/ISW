@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -6,16 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agregar-usuario.component.css']
 })
 export class AgregarUsuarioComponent implements OnInit {
-  public logueado: boolean;
-  public nombre: string = '';
-  public apellido: string = '';
-  public descripcion: string = '';
-  public pass: string = '';
-  public cargo: number;
+  private logueado: boolean;
+  private loading: boolean = false;
+  private model: any = [];
 
-  constructor() { }
+  constructor(private user: UsuarioService) { }
 
   ngOnInit() {
   }
 
+  crearUsuario(){
+    this.loading = true
+    this.user.crear(this.model).subscribe();
+    this.loading = false;
+  }
 }
