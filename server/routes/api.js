@@ -5,9 +5,9 @@ const router = express.Router();
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '1234',
-  database : 'mybd',
-  port     : 3306
+  password : 'root',
+  database : 'mydb',
+  port     : 8889
 });
 
 connection.connect(function(err) {
@@ -42,6 +42,14 @@ router.post('/bodega', function (req, res) {
   });
 });
 
+router.post('/agregar', function (req, res) {
+  consulta = 'insert into Usuario (Nombre, Cargo, Contrasena, Apellido, Mail) values ("' + req.body.nombre + '" ,' + req.body.cargo + ' ,"' + req.body.password +'", "' + req.body.apellido +'", "' + req.body.email +'")';
+  connection.query(consulta, function (error, results, fields) {
+  if (error) throw error;
+  return res.send("¡Usuario creado exitosamente!");
+  });
+});
+
 router.post('/bodega/borrar', function (req, res) {
   consulta = 'DELETE from  Material where ID_MATERIAL=' + req.body.ID;
   connection.query(consulta, function (error, results, fields) {
@@ -60,7 +68,6 @@ router.post('/agregar_usuario', function(req, res) {
   connection.query(query_user, function (error, results, fields) {
     if (error) throw error;
     if (results) {
-      console.log(results.insertId);
       if(req.body.cargo == 2) {
         query_bc = 'INSERT INTO `mybd`.`bodeguero central` (Usuario_ID_Usuario) VALUES (';
         query_bc +=  results.insertId + ')';

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 })
 export class BodegaComponent implements OnInit {
   public bodega: any;
-  public logueado: boolean;
+  public cargo: number;
   public nombre: string = '';
   public cantidad: number;
   public descripcion: string = '';
@@ -26,6 +26,7 @@ export class BodegaComponent implements OnInit {
     if(data == null){
       this.router.navigate(['./home']);
     }
+    this.cargo = data.cargo;
     this.bodegaService.obtenerBodega()
       .map(res => res.json())
       .subscribe(bodega => {
