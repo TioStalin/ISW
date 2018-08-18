@@ -5,9 +5,9 @@ const router = express.Router();
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'root',
+  password : '1234',
   database : 'mydb',
-  port     : 8889
+  port     : 3306
 });
 
 connection.connect(function(err) {
@@ -69,7 +69,7 @@ router.post('/agregar_usuario', function(req, res) {
     if (error) throw error;
     if (results) {
       if(req.body.cargo == 2) {
-        query_bc = 'INSERT INTO `mybd`.`bodeguero central` (Usuario_ID_Usuario) VALUES (';
+        query_bc = 'INSERT INTO `mydb`.`bodeguero central` (usuario_id) VALUES (';
         query_bc +=  results.insertId + ')';
         connection.query(query_bc, function (error, results, fields) {
           if (error) throw error;
@@ -78,7 +78,7 @@ router.post('/agregar_usuario', function(req, res) {
       }
 
       if(req.body.cargo == 3) {
-        query_bo = 'INSERT INTO `mybd`.`bodeguero de obra` (Usuario_ID_Usuario) VALUES (';
+        query_bo = 'INSERT INTO `mydb`.`bodeguero de obra` (usuario_id) VALUES (';
         query_bo+=  results.insertId + ')';
         connection.query(query_bo, function (error, results, fields) {
           if (error) throw error;
@@ -87,7 +87,7 @@ router.post('/agregar_usuario', function(req, res) {
       }
 
       if(req.body.cargo == 4) {
-        query_ec = 'INSERT INTO `mybd`.`encargado de compra` (Usuario_ID_Usuario) VALUES (';
+        query_ec = 'INSERT INTO `mydb`.`encargado de compra` (usuario_id) VALUES (';
         query_ec += results.insertId + ')';
         connection.query(query_ec, function (error, results, fields) {
           if (error) throw error;
