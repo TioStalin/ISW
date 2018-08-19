@@ -1,0 +1,33 @@
+<div class="section">
+  <div class="container">
+    <h3>Creación de Obra</h3>
+    <form (ngSubmit) = "f.form.valid && crearObra()" class="col s12" #f = "ngForm" novalidate>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">person</i>
+          <label for="1">Nombre de obra</label>
+          <input [(ngModel)]="model.nombre" name="1" type="text" class="form-control" #n_cond = "ngModel" required>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">person</i>
+          <label for="2">Descripcion</label>
+          <input [(ngModel)]="model.descripcion" name="2" type="text" class="form-control" #a_cond = "ngModel" required>
+        </div>
+
+      <div class="input-field col s6">
+        <i class="material-icons prefix">email</i>
+        <label for="3">Ubicacion</label>
+        <input [(ngModel)]="model.ubicacion" name="3" type="text" class="form-control" #e_cond = "ngModel" required>
+      </div>
+
+
+      <button class="btn waves-effect waves-light" [disabled]="!f.form.valid || loading">
+        Crear
+        <i class="material-icons right">add</i>
+      </button>
+      <button type="reset" class="btn waves-effect waves-light">Limpiar
+        <i class="material-icons right">clear</i>
+      </button>
+    </form>
+  </div>
+</div>

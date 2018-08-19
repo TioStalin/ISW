@@ -13,8 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './service/login.service';
 import { BodegaService } from './service/bodega.service';
 import { UsuarioService } from './service/usuario.service';
+import { ObraService } from './service/obra.service';
 import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
+import { CrearobraComponent } from './crearobra/crearobra.component';
+import { AsignarobraComponent } from './asignarobra/asignarobra.component';
 
 
 @NgModule({
@@ -24,7 +27,9 @@ import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.compo
     BodegaComponent,
     LoginComponent,
     ComprasComponent,
-    AgregarUsuarioComponent
+    AgregarUsuarioComponent,
+    CrearobraComponent,
+    AsignarobraComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +41,7 @@ import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.compo
   providers: [
     LoginService,
     BodegaService,
+    ObraService,
     UsuarioService
   ],
   bootstrap: [AppComponent]
