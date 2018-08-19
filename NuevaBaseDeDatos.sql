@@ -235,6 +235,7 @@ CREATE TABLE `obra` (
   `bodeguero de obra_id` int(11) DEFAULT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
+  `Ubicacion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_obra`),
   KEY `fk_obra_bodeguero de obra1_idx` (`bodeguero de obra_id`),
   CONSTRAINT `fk_obra_bodeguero de obra1` FOREIGN KEY (`bodeguero de obra_id`) REFERENCES `bodeguero de obra` (`id_bodeguero_obra`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -247,7 +248,7 @@ CREATE TABLE `obra` (
 
 LOCK TABLES `obra` WRITE;
 /*!40000 ALTER TABLE `obra` DISABLE KEYS */;
-INSERT INTO `obra` VALUES (1,NULL,'Obra 1','test'),(2,NULL,'Obra 2','test'),(3,NULL,'Obra 23','test'),(4,NULL,'Obra 4','test'),(5,NULL,'Obra5','test'),(6,NULL,'Obra 6','test');
+INSERT INTO `obra` VALUES (1,NULL,'Obra 1','test','santiago'),(2,NULL,'Obra 2','test','valparaiso'),(3,NULL,'Obra 23','test','santiago'),(4,NULL,'Obra 4','test','valparaiso'),(5,NULL,'Obra5','test','santiago'),(6,NULL,'Obra 6','test','valparaiso');
 /*!40000 ALTER TABLE `obra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-19 20:36:03
+-- Dump completed on 2018-08-19 20:45:26

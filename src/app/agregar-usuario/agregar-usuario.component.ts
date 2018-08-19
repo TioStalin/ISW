@@ -11,6 +11,7 @@ import { LoginService } from '../service/login.service';
 export class AgregarUsuarioComponent implements OnInit {
   private loading: boolean = false;
   private model: any = [];
+  private text: any = "";
 
   constructor(public loginService: LoginService,
               private router: Router,
@@ -28,7 +29,7 @@ export class AgregarUsuarioComponent implements OnInit {
 
   crearUsuario(){
     this.loading = true
-    this.user.crear(this.model).subscribe();
+    this.user.crear(this.model).subscribe(data => this.text = data.text());
     this.loading = false;
   }
 }
