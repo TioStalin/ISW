@@ -233,10 +233,14 @@ DROP TABLE IF EXISTS `obra`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `obra` (
   `id_obra` int(11) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
   `bodeguero de obra_id` int(11),
 `Nombre` varchar(45),
 `Descripcion` varchar(45),
 `Ubicacion` varchar(45),
+=======
+  `bodeguero de obra_id` int(11) NOT NULL,
+>>>>>>> 0a3cd29a3d03d238fe7eda564e0a807595a4ff79
   PRIMARY KEY (`id_obra`,`bodeguero de obra_id`),
   KEY `fk_obra_bodeguero de obra1_idx` (`bodeguero de obra_id`),
   CONSTRAINT `fk_obra_bodeguero de obra1` FOREIGN KEY (`bodeguero de obra_id`) REFERENCES `bodeguero de obra` (`id_bodeguero_obra`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -346,4 +350,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2018-08-18 17:10:52
+=======
+-- Dump completed on 2018-08-18 17:10:52
+>>>>>>> 0a3cd29a3d03d238fe7eda564e0a807595a4ff79
