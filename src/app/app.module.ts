@@ -16,9 +16,7 @@ import { UsuarioService } from './service/usuario.service';
 import { ObraService } from './service/obra.service';
 import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
-import { CrearobraComponent } from './crearobra/crearobra.component';
-import { AsignarobraComponent } from './asignarobra/asignarobra.component';
-
+import { ObraComponent } from './obra/obra.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +26,7 @@ import { AsignarobraComponent } from './asignarobra/asignarobra.component';
     LoginComponent,
     ComprasComponent,
     AgregarUsuarioComponent,
-    CrearobraComponent,
-    AsignarobraComponent
+    ObraComponent
   ],
   imports: [
     BrowserModule,

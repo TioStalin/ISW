@@ -31,7 +31,6 @@ export class BodegaComponent implements OnInit {
       .map(res => res.json())
       .subscribe(bodega => {
         this.bodega = bodega;
-        console.log(this.bodega);
       });
   }
 

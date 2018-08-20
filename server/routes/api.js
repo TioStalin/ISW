@@ -70,9 +70,12 @@ router.post('/crearobra', function (req, res) {
   });
 });
 
-
-
-
+router.get('/obra', function (req, res) {
+   connection.query('select * from obra', function (error, results, fields) {
+   if (error) throw error;
+   res.send(JSON.stringify(results));
+ });
+});
 
 router.post('/agregar_usuario', function(req, res) {
   query_user = 'INSERT INTO usuario (Nombre, Apellido, Contrasena, Cargo, Mail) VALUES (';

@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../service/usuario.service';
 import { ObraService } from '../service/obra.service';
 @Component({
-  selector: 'app-crearobra',
-  templateUrl: './crearobra.component.html',
-  styleUrls: ['./crearobra.component.css']
+  selector: 'app-obra',
+  templateUrl: './obra.component.html',
+  styleUrls: ['./obra.component.css']
 })
-export class CrearobraComponent implements OnInit {
+export class ObraComponent implements OnInit {
   private loading: boolean = false;
   private model: any = [];
+  private text: any = "";
+  private obras: any;
 
   constructor(public loginService: LoginService,
               private router: Router,
@@ -25,11 +27,21 @@ export class CrearobraComponent implements OnInit {
     else if(data != null && data.cargo != 1){
       this.router.navigate(['./home']);
     }
+    this.obrita.obtenerObras()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.obras = data;
+      });
   }
 
   crearObra(){
     this.loading=true;
-    this.obrita.crearob(this.model).subscribe();
+    this.obrita.crearob(this.model).subscribe(data => this.text = data.text());
+    this.obrita.obtenerObras()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.obras = data;
+      });    
     this.loading = false;
   }
 

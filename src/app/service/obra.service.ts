@@ -10,4 +10,8 @@ export class ObraService {
     return this.http.post('/api/crearobra',{"nombre": model.nombre,"descripcion": model.descripcion,"ubicacion": model.ubicacion});
   }
 
+  obtenerObras(){
+    return this.http.get('/api/obra');
+  }
+
 }
