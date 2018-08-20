@@ -14,4 +14,8 @@ export class ObraService {
     return this.http.get('/api/obra');
   }
 
+  asignarBodeguero(asignar:any){
+    return this.http.post('/api/asignar_bodeguero', {"id_obra": asignar.id_obra,"id_bodeguero": asignar.id_bodeguero});
+  }
+
 }

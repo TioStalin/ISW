@@ -77,6 +77,22 @@ router.get('/obra', function (req, res) {
  });
 });
 
+router.get('/usuario/bodeguero_obra', function (req, res) {
+   connection.query('select * from `bodeguero de obra`, usuario where id_usuario = usuario_id', function (error, results, fields) {
+   if (error) throw error;
+   res.send(JSON.stringify(results));
+ });
+});
+
+router.post('/asignar_bodeguero', function(req, res) {
+  query = "UPDATE obra SET `bodeguero de obra_id` = " + req.body.id_bodeguero + " WHERE id_obra = " + req.body.id_obra;
+  console.log(query);
+  connection.query(query, function (error, results, fields) {
+  if (error) throw error;
+  return res.send("¡Obra asignada!");
+  });
+});
+
 router.post('/agregar_usuario', function(req, res) {
   query_user = 'INSERT INTO usuario (Nombre, Apellido, Contrasena, Cargo, Mail) VALUES (';
   query_user += '"' + req.body.nombre   +'" ,';

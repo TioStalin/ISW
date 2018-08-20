@@ -17,4 +17,8 @@ export class UsuarioService {
     });
   }
 
+  obtenerBodegueros(){
+    return this.http.get('/api/usuario/bodeguero_obra');
+  }
+
 }

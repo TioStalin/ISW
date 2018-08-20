@@ -12,12 +12,15 @@ export class ObraComponent implements OnInit {
   private loading: boolean = false;
   private model: any = [];
   private text: any = "";
+  private text_asignar: any = "";
   private obras: any;
+  private bodegueros: any;
+  private asignar: any = [];
 
   constructor(public loginService: LoginService,
               private router: Router,
-              private obrita: ObraService
-              ) { }
+              private obrita: ObraService,
+              private userService: UsuarioService) { }
 
   ngOnInit(){
     var data = this.loginService.estarLogin();
@@ -31,7 +34,14 @@ export class ObraComponent implements OnInit {
       .map(res => res.json())
       .subscribe(data => {
         this.obras = data;
+        console.log(this.obras);
       });
+    this.userService.obtenerBodegueros()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.bodegueros = data;
+        console.log(this.bodegueros);
+    });
   }
 
   crearObra(){
@@ -41,8 +51,18 @@ export class ObraComponent implements OnInit {
       .map(res => res.json())
       .subscribe(data => {
         this.obras = data;
-      });    
+      });
     this.loading = false;
   }
 
+  asignar_b(){
+    this.loading=true;
+    this.obrita.asignarBodeguero(this.asignar).subscribe(data => this.text_asignar = data.text());
+    this.obrita.obtenerObras()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.obras = data;
+      });
+    this.loading = false;
+  }
 }
