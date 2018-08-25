@@ -15,6 +15,7 @@ export class ObraComponent implements OnInit {
   private text_asignar: any = "";
   private obras: any;
   private bodegueros: any;
+  private bc: any;
   private asignar: any = [];
 
   constructor(public loginService: LoginService,
@@ -42,6 +43,11 @@ export class ObraComponent implements OnInit {
         this.bodegueros = data;
         console.log(this.bodegueros);
     });
+    this.obrita.obtenerBC()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.bc = data;
+      });
   }
 
   crearObra(){

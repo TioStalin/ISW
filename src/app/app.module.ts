@@ -14,9 +14,11 @@ import { LoginService } from './service/login.service';
 import { BodegaService } from './service/bodega.service';
 import { UsuarioService } from './service/usuario.service';
 import { ObraService } from './service/obra.service';
+import { SolicitarService } from './service/solicitar.service';
 import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 import { ObraComponent } from './obra/obra.component';
+import { SolicitarComponent } from './solicitar/solicitar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ObraComponent } from './obra/obra.component';
     LoginComponent,
     ComprasComponent,
     AgregarUsuarioComponent,
-    ObraComponent
+    ObraComponent,
+    SolicitarComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { ObraComponent } from './obra/obra.component';
     LoginService,
     BodegaService,
     ObraService,
-    UsuarioService
+    UsuarioService,
+    SolicitarService 
   ],
   bootstrap: [AppComponent]
 })

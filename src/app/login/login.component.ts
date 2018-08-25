@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.loginService.acceder(this.user, this.pass).subscribe(
       response => {
         if(response[0] != null){
-          localStorage.setItem('usuario', JSON.stringify({ nombre: response[0].Nombre, mail: response[0].Mail, cargo: response[0].Cargo}));
+          localStorage.setItem('usuario', JSON.stringify({ nombre: response[0].Nombre, mail: response[0].Mail, cargo: response[0].Cargo, id: response[0].id_usuario}));
           this.router.navigate(['./home']);
         }
         else{

@@ -54,7 +54,7 @@
       </table>
     </div>
 
-    <div *ngIf="obras && bodegueros" class="row">
+    <div *ngIf="obras && bodegueros && bc" class="row">
       <h3>Asignar bodeguero</h3>
       <form (ngSubmit) = "f2.form.valid && asignar_b()" class="col s12" #f2 = "ngForm" novalidate>
         <div class="input-field col s12">
@@ -72,6 +72,15 @@
               <option value="" disabled selected>Elegir Bodeguero</option>
               <option *ngFor="let bodeguero of bodegueros" [value]="bodeguero.id_bodeguero_obra">
                   {{bodeguero.Nombre}} {{bodeguero.Apellido}}
+              </option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">category</i>
+          <select materialize="material_select" [(ngModel)]="asignar.id_bodeguero_central" type="text" name="7" #boc_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir Bodeguero central</option>
+              <option *ngFor="let b of bc" [value]="b.id_bodeguero_central">
+                  {{b.Nombre}} {{b.Apellido}}
               </option>
           </select>
         </div>

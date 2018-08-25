@@ -26,6 +26,22 @@ router.get('/bodega', function (req, res) {
  });
 });
 
+router.post('/encontrar_bc', function (req, res) {
+   query  = 'select * from `bodeguero de obra` where usuario_id = ' + req.body.id ;
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+router.get('/bc', function (req, res) {
+   connection.query('select * from `bodeguero central`, usuario where id_usuario = usuario_id', function (error, results, fields) {
+   if (error) throw error;
+   res.send(JSON.stringify(results));
+ });
+});
+
 router.post('/usuario', function (req, res) {
   consulta = 'select * from usuario where Nombre = "' + req.body.nombre + '" and Contrasena = "' + req.body.contrasena + '"';
   connection.query(consulta, function (error, results, fields) {
@@ -89,8 +105,15 @@ router.post('/asignar_bodeguero', function(req, res) {
   console.log(query);
   connection.query(query, function (error, results, fields) {
   if (error) throw error;
-  return res.send("¡Obra asignada!");
   });
+
+  query2 = "UPDATE `bodeguero de obra` SET `bc_id` = " + req.body.id_bodeguero_central + " WHERE id_bodeguero_obra = " + req.body.id_bodeguero;
+  console.log(query2);
+  connection.query(query2, function (error, results, fields) {
+  if (error) throw error;
+  });
+
+  return res.send("¡Obra asignada!");
 });
 
 router.post('/agregar_usuario', function(req, res) {
@@ -132,4 +155,12 @@ router.post('/agregar_usuario', function(req, res) {
     }
   });
 });
+
+/*router.post('/solicitud_material', function(req, res) {
+  query_1 = "INSERT INTO `mydb`.`solicitud de material` (`bodeguero de obra_id`, `bodeguero central_id`, fecha) VALUES (";
+  connection.query(query, function (error, results, fields) {
+  if (error) throw error;
+  });
+});*/
+
 module.exports = router;
