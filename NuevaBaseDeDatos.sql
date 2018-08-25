@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mydb`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
@@ -31,7 +31,7 @@ CREATE TABLE `bodega` (
   KEY `fk_obra_has_material_obra1_idx` (`obra_id`),
   CONSTRAINT `fk_obra_has_material_material1` FOREIGN KEY (`material_id`) REFERENCES `material` (`id_material`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_obra_has_material_obra1` FOREIGN KEY (`obra_id`) REFERENCES `obra` (`id_obra`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `bodega central` (
   KEY `fk_material_has_bodeguero central_material1_idx` (`material_id`),
   CONSTRAINT `fk_material_has_bodeguero central_bodeguero central1` FOREIGN KEY (`bodeguero central_id`) REFERENCES `bodeguero central` (`id_bodeguero_central`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_material_has_bodeguero central_material1` FOREIGN KEY (`material_id`) REFERENCES `material` (`id_material`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `bodeguero central` (
   PRIMARY KEY (`id_bodeguero_central`),
   KEY `fk_bodeguero central_usuario_idx` (`usuario_id`),
   CONSTRAINT `fk_bodeguero central_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `bodeguero central` (
 
 LOCK TABLES `bodeguero central` WRITE;
 /*!40000 ALTER TABLE `bodeguero central` DISABLE KEYS */;
-INSERT INTO `bodeguero central` VALUES (1,5);
+INSERT INTO `bodeguero central` VALUES (1,4);
 /*!40000 ALTER TABLE `bodeguero central` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,10 +105,13 @@ DROP TABLE IF EXISTS `bodeguero de obra`;
 CREATE TABLE `bodeguero de obra` (
   `id_bodeguero_obra` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) DEFAULT NULL,
+  `bc_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_bodeguero_obra`),
   KEY `fk_bodeguero de obra_usuario1_idx` (`usuario_id`),
+  KEY `fk_bodeguero de obra_bodeguero central1_idx` (`bc_id`),
+  CONSTRAINT `fk_bodeguero de obra_bodeguero central1` FOREIGN KEY (`bc_id`) REFERENCES `bodeguero central` (`id_bodeguero_central`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bodeguero de obra_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +120,7 @@ CREATE TABLE `bodeguero de obra` (
 
 LOCK TABLES `bodeguero de obra` WRITE;
 /*!40000 ALTER TABLE `bodeguero de obra` DISABLE KEYS */;
-INSERT INTO `bodeguero de obra` VALUES (1,2),(2,3),(3,4),(4,7),(5,8),(6,9),(7,10);
+INSERT INTO `bodeguero de obra` VALUES (1,3,1),(2,6,1);
 /*!40000 ALTER TABLE `bodeguero de obra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +137,7 @@ CREATE TABLE `encargado de compra` (
   PRIMARY KEY (`id_encargado_compra`),
   KEY `fk_encargado de compra_usuario1_idx` (`usuario_id`),
   CONSTRAINT `fk_encargado de compra_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +146,7 @@ CREATE TABLE `encargado de compra` (
 
 LOCK TABLES `encargado de compra` WRITE;
 /*!40000 ALTER TABLE `encargado de compra` DISABLE KEYS */;
-INSERT INTO `encargado de compra` VALUES (1,6);
+INSERT INTO `encargado de compra` VALUES (1,5);
 /*!40000 ALTER TABLE `encargado de compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +163,7 @@ CREATE TABLE `material` (
   `Cantidad` varchar(45) DEFAULT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_material`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +172,7 @@ CREATE TABLE `material` (
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-INSERT INTO `material` VALUES (1,'material 1','1','obra 1'),(2,'material 2','1','obra 1'),(3,'material 3','1','obra 1'),(4,'material 4','1','obra 1'),(5,'material 5','1','obra 1'),(6,'material 6','1','obra 2'),(7,'material 7','1','obra 2'),(8,'material 8','1','obra 2'),(9,'material 9','1','obra 2'),(10,'material 10','1','obra 2'),(11,'material 11','1','obra 3'),(12,'material 12','1','obra 3'),(13,'material 13','1','obra 3'),(14,'material 14','1','obra 3'),(15,'material 15','1','obra 3');
+INSERT INTO `material` VALUES (1,'material 1','1','bodega 1'),(2,'material 2','1','bodega 1'),(3,'material 3','1','bodega 1'),(4,'material 4','1','bodega 2'),(5,'material 5','1','bodega 2'),(6,'material 6','1','bodega 2');
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +189,7 @@ CREATE TABLE `material_compra` (
   `Cantidad` varchar(45) DEFAULT NULL,
   KEY `fk_material_compra_solicitud de compra1` (`solicitud de compra_id`),
   CONSTRAINT `fk_material_compra_solicitud de compra1` FOREIGN KEY (`solicitud de compra_id`) REFERENCES `solicitud de compra` (`id_solicitud_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +214,7 @@ CREATE TABLE `material_solicitud` (
   `Cantidad` varchar(45) DEFAULT NULL,
   KEY `fk_material_solicitud_solicitud de material1` (`solicitud de material_id`),
   CONSTRAINT `fk_material_solicitud_solicitud de material1` FOREIGN KEY (`solicitud de material_id`) REFERENCES `solicitud de material` (`id_solicitud_material`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +242,7 @@ CREATE TABLE `obra` (
   PRIMARY KEY (`id_obra`),
   KEY `fk_obra_bodeguero de obra1_idx` (`bodeguero de obra_id`),
   CONSTRAINT `fk_obra_bodeguero de obra1` FOREIGN KEY (`bodeguero de obra_id`) REFERENCES `bodeguero de obra` (`id_bodeguero_obra`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +251,7 @@ CREATE TABLE `obra` (
 
 LOCK TABLES `obra` WRITE;
 /*!40000 ALTER TABLE `obra` DISABLE KEYS */;
-INSERT INTO `obra` VALUES (1,NULL,'Obra 1','test','santiago'),(2,NULL,'Obra 2','test','valparaiso'),(3,NULL,'Obra 23','test','santiago'),(4,NULL,'Obra 4','test','valparaiso'),(5,NULL,'Obra5','test','santiago'),(6,NULL,'Obra 6','test','valparaiso');
+INSERT INTO `obra` VALUES (1,1,'Obra 1','test','Estados Unidos'),(2,2,'Obra 2','test','Santiago');
 /*!40000 ALTER TABLE `obra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +271,7 @@ CREATE TABLE `solicitud de compra` (
   KEY `fk_bodeguero central_has_encargado de compra_bodeguero cent_idx` (`bodeguero central_id`),
   CONSTRAINT `fk_bodeguero central_has_encargado de compra_bodeguero central1` FOREIGN KEY (`bodeguero central_id`) REFERENCES `bodeguero central` (`id_bodeguero_central`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bodeguero central_has_encargado de compra_encargado de com1` FOREIGN KEY (`encargado de compra_id`) REFERENCES `encargado de compra` (`id_encargado_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +300,7 @@ CREATE TABLE `solicitud de material` (
   KEY `fk_bodeguero de obra_has_bodeguero central_bodeguero de obr_idx` (`bodeguero de obra_id`),
   CONSTRAINT `fk_bodeguero de obra_has_bodeguero central_bodeguero central1` FOREIGN KEY (`bodeguero central_id`) REFERENCES `bodeguero central` (`id_bodeguero_central`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bodeguero de obra_has_bodeguero central_bodeguero de obra1` FOREIGN KEY (`bodeguero de obra_id`) REFERENCES `bodeguero de obra` (`id_bodeguero_obra`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,7 +327,7 @@ CREATE TABLE `usuario` (
   `Cargo` int(11) DEFAULT NULL,
   `Mail` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +336,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Administrador','Web','123',1,'admin@test.cl'),(2,'bodeguero 1','test','123',3,'bodeguero1@test.cl'),(3,'bodeguero 2','test','123',3,'bodeguero2@test.cl'),(4,'bodeguero 3','test','123',3,'bodeguero3@test.cl'),(5,'bc','test','123',2,'bc@test.cl'),(6,'ec','test','123',4,'ec@test.cl'),(7,'bodeguero 4','test','123',3,'bodeguero4@test.cl'),(8,'bodeguero 5','test','123',3,'bodeguero5@test.cl'),(9,'bodeguero 6','test','123',3,'bodeguero6@test.cl'),(10,'bodeguero 7','test','123',3,'bodeguero7@test.cl');
+INSERT INTO `usuario` VALUES (1,'admin','root','123',1,'admin@test.cl'),(3,'bodeguero 1','test','123',3,'bodeguero1@test.cl'),(4,'bc','test','123',2,'bc@test.cl'),(5,'ec','test','123',4,'ec@test.cl'),(6,'bodeguero 2','test','123',3,'bodeguero2@test.cl');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-19 20:45:26
+-- Dump completed on 2018-08-25 18:45:22
