@@ -11,6 +11,7 @@
         <li *ngIf = "login && cargo == 1"><a [routerLink]="['/compras']"><i class="material-icons left">attach_money</i>Compras</a></li>
         <li *ngIf = "login && cargo == 1"><a [routerLink]="['/agregar_usuario']"><i class="material-icons left">person_add</i>Agregar usuario</a></li>
         <li *ngIf = "login && cargo == 3"><a [routerLink]="['/solicitar_material']"><i class="material-icons left">send</i>Solicitud de Material</a></li>
+        <li *ngIf = "login && cargo == 2"><a [routerLink]="['/solicitudes_de_material']"><i class="material-icons left">storage</i>Solicitudes de Material</a></li>
         <li *ngIf = "login"><a [routerLink]="['/home']" (click)="salir()"><i class="material-icons left">cancel</i>Log Out</a></li>
         <li *ngIf = "!login"><a [routerLink]="['/login']"><i class="material-icons left">account_circle</i>Log In</a></li>
       </ul>

@@ -1,0 +1,31 @@
+<div class="section">
+  <div class="container">
+    <h3>Solicitudes de material</h3>
+    <div class="row">
+      <table *ngIf="solicitudes" class="highlight">
+        <thead>
+          <tr>
+              <th>Bodeguero de obra</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Fecha</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let resultados of solicitudes">
+            <td>{{resultados.nombre_bodeguero}} {{resultados.Apellido}}</td>
+            <td>{{resultados.nombre_material}}</td>
+            <td>{{resultados.Cantidad}}</td>
+            <td>{{resultados.Fecha}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class = "row">
+      <h3>Asignar material</h3>
+    </div>
+
+  </div>
+</div>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -15,10 +14,12 @@ import { BodegaService } from './service/bodega.service';
 import { UsuarioService } from './service/usuario.service';
 import { ObraService } from './service/obra.service';
 import { SolicitarService } from './service/solicitar.service';
+import { SolicitudesMaterialService } from './service/solicitudes-material.service';
 import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 import { ObraComponent } from './obra/obra.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
+import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes-material.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
     ComprasComponent,
     AgregarUsuarioComponent,
     ObraComponent,
-    SolicitarComponent
+    SolicitarComponent,
+    SolicitudesMaterialComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
     BodegaService,
     ObraService,
     UsuarioService,
-    SolicitarService 
+    SolicitarService,
+    SolicitudesMaterialService
   ],
   bootstrap: [AppComponent]
 })

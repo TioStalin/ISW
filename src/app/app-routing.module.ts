@@ -8,6 +8,7 @@ import { ComprasComponent } from './compras/compras.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 import { ObraComponent } from './obra/obra.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
+import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes-material.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'agregar_usuario', component: AgregarUsuarioComponent},
   {path: 'obra', component: ObraComponent},
   {path: 'solicitar_material', component: SolicitarComponent},
+  {path: 'solicitudes_de_material', component: SolicitudesMaterialComponent},
   {path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

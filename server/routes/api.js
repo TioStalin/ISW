@@ -35,6 +35,25 @@ router.post('/encontrar_bc', function (req, res) {
    });
 });
 
+router.post('/encontrar_id', function (req, res) {
+   query  = 'select * from `bodeguero central` where usuario_id = ' + req.body.id ;
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+router.post('/encontrar_solicitudes', function (req, res) {
+   query  = 'select Apellido, Cantidad, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario` where `bodeguero central_id` = ' + req.body.id;
+   query += ' and `id_solicitud_material` = `solicitud de material_id` and `bodeguero de obra_id` = `id_bodeguero_obra` and `usuario_id` = `id_usuario`';
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
 router.get('/bc', function (req, res) {
    connection.query('select * from `bodeguero central`, usuario where id_usuario = usuario_id', function (error, results, fields) {
    if (error) throw error;
