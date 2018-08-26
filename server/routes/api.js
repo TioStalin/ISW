@@ -156,11 +156,22 @@ router.post('/agregar_usuario', function(req, res) {
   });
 });
 
-/*router.post('/solicitud_material', function(req, res) {
-  query_1 = "INSERT INTO `mydb`.`solicitud de material` (`bodeguero de obra_id`, `bodeguero central_id`, fecha) VALUES (";
+router.post('/solicitud_material', function(req, res) {
+  query = "INSERT INTO `mydb`.`solicitud de material` (`bodeguero de obra_id`, `bodeguero central_id`, Fecha) VALUES (";
+  query += req.body.id_bo  + ', ';
+  query += req.body.id_bc  + ', ';
+  query += '"' + req.body.fecha + '")';
   connection.query(query, function (error, results, fields) {
-  if (error) throw error;
+    if (error) throw error;
+    query2 = "INSERT INTO `mydb`.`material_solicitud` (`solicitud de material_id`, `Nombre`, `Cantidad`) VALUES (";
+    query2 += results.insertId + ', ';
+    query2 += '"' + req.body.nombre + '", ';
+    query2 += req.body.cantidad + ')';
+    connection.query(query2, function (error, results, fields) {
+      if (error) throw error;
+      if (results) return res.send("¡Material solicitado correctamente!");
+    });
   });
-});*/
+});
 
 module.exports = router;

@@ -14,12 +14,14 @@ export class SolicitarComponent implements OnInit {
   private model: any = [];
   private cargo: number;
   private text: any = "";
-  private id: any;
   private bc: any;
+  private d: any = new Date();
 
   constructor(public loginService: LoginService,
               private router: Router,
-              private solicitarService: SolicitarService) { }
+              private solicitarService: SolicitarService) {
+                this.d.setMonth(this.d.getMonth() + 1);
+  }
 
   ngOnInit(){
     var data = this.loginService.estarLogin();
@@ -27,7 +29,7 @@ export class SolicitarComponent implements OnInit {
       this.router.navigate(['./home']);
     }
     this.cargo = data.cargo;
-    this.id = data.id;
+    this.model.id = data.id;
   }
 
   solicitar(){
@@ -41,15 +43,18 @@ export class SolicitarComponent implements OnInit {
       alert('Material no contiene detalles');
     }
     else{
-      this.solicitarService.encontrarBC(this.id)
+      this.solicitarService.encontrarBC(this.model.id)
         .map(res => res.json())
         .subscribe(data => {
-          console.log(data);
+          this.model.date = this.d.getDate()+ "/" + this.d.getMonth() + "/" + this.d.getFullYear();
           this.model.id_bc = data['0'].bc_id;
-          console.log(this.model.id_bc);
+          this.model.id_bo = data['0'].id_bodeguero_obra;
+          this.solicitarService.solicitarMaterial(this.model)
+            .subscribe(data => {
+                  this.text = data.text();
+            });
       });
+   }
 
-    }
-  }
-
+ }
 }

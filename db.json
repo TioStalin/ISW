@@ -1,0 +1,27 @@
+{
+  "proveedor": [
+    { "id": 1, "nombre": "Gustavo Barrios", "direccion": "Sienna 8998", "contacto": "gus@test.cl", "rut": "19.309.596-8", "telefono": "+596 9696 1132"},
+    { "id": 2, "nombre": "Tapia Inc.", "direccion": "Av. Central 222", "contacto": "ti@test.cl", "rut": "19.514.544-k", "telefono": "+596 7139 3188"},
+    { "id": 3, "nombre": "Terry Ltda.", "direccion": "Av. Central 222", "contacto": "ti@test.cl", "rut": "19.514.544-k", "telefono": "+596 7139 3188" }
+  ],
+  "materiales": [
+    { "id": 1, "nombre": "material 1", "precio": 100,  "proveedor_id": 1 },
+    { "id": 2, "nombre": "material 2", "precio": 200,  "proveedor_id": 1 },
+    { "id": 3, "nombre": "material 3", "precio": 300,  "proveedor_id": 1 },
+    { "id": 4, "nombre": "material 4", "precio": 400,  "proveedor_id": 1 },
+    { "id": 5, "nombre": "material 5", "precio": 500,  "proveedor_id": 1 },
+    { "id": 6, "nombre": "material 6", "precio": 600,  "proveedor_id": 1 },
+    { "id": 7, "nombre": "material 1", "precio": 100,  "proveedor_id": 2 },
+    { "id": 8, "nombre": "material 2", "precio": 200,  "proveedor_id": 2 },
+    { "id": 9, "nombre": "material 3", "precio": 300,  "proveedor_id": 2 },
+    { "id": 10, "nombre": "material 4", "precio": 400,  "proveedor_id": 2 },
+    { "id": 11, "nombre": "material 5", "precio": 500,  "proveedor_id": 2 },
+    { "id": 12, "nombre": "material 6", "precio": 600,  "proveedor_id": 2 },
+    { "id": 13, "nombre": "material 1", "precio": 100,  "proveedor_id": 3 },
+    { "id": 14, "nombre": "material 2", "precio": 200,  "proveedor_id": 3 },
+    { "id": 15, "nombre": "material 3", "precio": 300,  "proveedor_id": 3 },
+    { "id": 16, "nombre": "material 4", "precio": 400,  "proveedor_id": 3 },
+    { "id": 17, "nombre": "material 5", "precio": 500,  "proveedor_id": 3 },
+    { "id": 18, "nombre": "material 6", "precio": 600,  "proveedor_id": 3 }
+  ]
+}
