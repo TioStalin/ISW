@@ -1,0 +1,34 @@
+<div class="section">
+  <div class="container">
+    <h3>Solicitud de compra</h3>
+    <form (ngSubmit) = "f.form.valid && solicitarcompra()" class="col s12" #f = "ngForm" novalidate>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">build</i>
+          <label for="1">Nombre</label>
+          <input [(ngModel)]="model.nombre" name="1" type="text" class="form-control" #n_cond = "ngModel" required>
+        </div>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">exposure_plus_1</i>
+        <label for="3">Cantidad</label>
+        <input [(ngModel)]="model.cantidad" name="3" type="text" class="form-control" #e_cond = "ngModel" required>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">subject</i>
+        <label for="4">Descripci&oacute;n</label>
+        <input [(ngModel)]="model.descripcion" name="4" type="text" class="form-control" #p_cond= "ngModel" required>
+      </div>
+      <button class="btn waves-effect waves-light" [disabled]="!f.form.valid || loading">
+        Enviar
+        <i class="material-icons right">add</i>
+      </button>
+      <button type="reset" class="btn waves-effect waves-light">Limpiar
+        <i class="material-icons right">clear</i>
+      </button>
+    </form>
+    <div style="margin-top:20px">
+      <span style="color: #07b507;">{{text}}</span>
+    </div>
+  </div>
+</div>
