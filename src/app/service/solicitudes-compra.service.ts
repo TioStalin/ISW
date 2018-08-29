@@ -16,4 +16,7 @@ export class SolicitudesCompraService {
   encontrarProveedores(){
     return this.http.get('http://localhost:3004/proveedor');
   }
+  encontrarMateriales(){
+    return this.http.get('http://localhost:3004/materiales');
+  }
 }

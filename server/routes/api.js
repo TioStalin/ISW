@@ -164,7 +164,7 @@ router.get('/obra', function (req, res) {
 });
 
 router.get('/obras_asignadas', function (req, res) {
-   connection.query('select `obra`.Nombre AS nombre_obra, `usuario`.Nombre AS nombre_bodeguero, Apellido, Descripcion, Ubicacion from obra, `bodeguero de obra`, usuario where id_obra = id_bodeguero_obra and usuario_id = id_usuario', function (error, results, fields) {
+   connection.query('select `obra`.Nombre AS nombre_obra, `usuario`.Nombre AS nombre_bodeguero, Apellido, Descripcion, Ubicacion from obra, `bodeguero de obra`, usuario where id_obra = id_bodeguero_obra and usuario_id = id_usuario and `obra`.`bodeguero de obra_id` is not null', function (error, results, fields) {
    if (error) throw error;
    res.send(JSON.stringify(results));
  });
