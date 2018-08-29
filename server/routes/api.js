@@ -45,8 +45,8 @@ router.post('/encontrar_id', function (req, res) {
 });
 
 router.post('/encontrar_solicitudes', function (req, res) {
-   query  = 'select Apellido, Cantidad, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario` where `bodeguero central_id` = ' + req.body.id;
-   query += ' and `id_solicitud_material` = `solicitud de material_id` and `bodeguero de obra_id` = `id_bodeguero_obra` and `usuario_id` = `id_usuario`';
+   query  = 'SELECT id_material, id_obra, Apellido, `material`.Cantidad AS cantidad_bodega,`material_solicitud`.Cantidad AS cantidad_solicitud, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero, `obra`.Nombre as nombre_obra, Ubicacion from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario`, `obra`,`material` where `bodeguero central_id` = ' + req.body.id;
+   query += ' and `id_solicitud_material` = `solicitud de material_id` and `solicitud de material`.`bodeguero de obra_id` = `id_bodeguero_obra` and `usuario_id` = `id_usuario` and `id_bodeguero_obra` = `obra`.`bodeguero de obra_id` and `material_solicitud`.Nombre = `material`.Nombre';
    console.log(query);
    connection.query(query, function (error, results, fields) {
          if (error) throw error;

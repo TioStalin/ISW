@@ -8,23 +8,55 @@
               <th>Bodeguero de obra</th>
               <th>Producto</th>
               <th>Cantidad</th>
+              <th>Obra</th>
+              <th>Ubicaci&oacute;n</th>
               <th>Fecha</th>
-              <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor = "let resultados of solicitudes">
             <td>{{resultados.nombre_bodeguero}} {{resultados.Apellido}}</td>
             <td>{{resultados.nombre_material}}</td>
-            <td>{{resultados.Cantidad}}</td>
+            <td>{{resultados.cantidad_solicitud}}</td>
+            <td>{{resultados.nombre_obra}}</td>
+            <td>{{resultados.Ubicacion}}</td>
             <td>{{resultados.Fecha}}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class = "row">
+    <div *ngIf="bodega && obras" class = "row">
       <h3>Asignar material</h3>
+      <form class="col s12">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">category</i>
+          <select materialize="material_select" [(ngModel)]="asignar.material" type="text" name="form_cantidad" #m_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir material</option>
+              <option *ngFor="let m of solicitudes" [ngValue]="m">
+                  {{m.nombre_material}}
+              </option>
+          </select>
+        </div>
+        <div *ngIf="asignar.material" class="input-field col s12">
+          <i class="material-icons prefix">exposure_plus_1</i>
+          <label for="Cantidad">Cantidad(max: {{asignar.material.cantidad_bodega}})</label>
+          <input [(ngModel)]="asignar.cantidad" name="form_cantidad" type="number" class="form-control" #c_cond = "ngModel" required>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">category</i>
+          <select materialize="material_select" [(ngModel)]="asignar.id_obra" type="text" name="form_obra" #o_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir Obra</option>
+              <option *ngFor="let o of solicitudes" [value]="o.id_obra">
+                  {{o.nombre_obra}}
+              </option>
+          </select>
+        </div>
+
+        <button (click)="asginarMaterial()" class="btn waves-effect waves-light">Asignar
+          <i class="material-icons right">add</i>
+        </button>
+      </form>
     </div>
 
   </div>

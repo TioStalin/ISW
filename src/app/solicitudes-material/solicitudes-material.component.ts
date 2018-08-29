@@ -3,6 +3,7 @@ import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import { SolicitudesMaterialService } from '../service/solicitudes-material.service';
 import { BodegaService } from '../service/bodega.service';
+import { ObraService } from '../service/obra.service';
 
 @Component({
   selector: 'app-solicitudes-material',
@@ -12,12 +13,11 @@ import { BodegaService } from '../service/bodega.service';
 export class SolicitudesMaterialComponent implements OnInit {
 
   private solicitudes: any;
-  private bodega: any;
+  private asignar: any = [];
 
   constructor(public loginService: LoginService,
               private router: Router,
-              private solicitudesMaterial: SolicitudesMaterialService,
-              private bodegaService:BodegaService) { }
+              private solicitudesMaterial: SolicitudesMaterialService) { }
 
   ngOnInit(){
     var data = this.loginService.estarLogin();
@@ -38,11 +38,9 @@ export class SolicitudesMaterialComponent implements OnInit {
             console.log(this.solicitudes);
           });
       });
-    this.bodegaService.obtenerBodega()
-      .map(res => res.json())
-      .subscribe(bodega => {
-        this.bodega = bodega;
-      });
+  }
 
+  asignarMaterial(){
+    console.log(this.asignar);
   }
 }
