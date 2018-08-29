@@ -19,11 +19,20 @@ router.get('/', (req, res) => {
   res.send('api works');
 });
 
-router.get('/bodega', function (req, res) {
+router.get('/materiales', function (req, res) {
    connection.query('select * from Material', function (error, results, fields) {
    if (error) throw error;
    res.send(JSON.stringify(results));
  });
+});
+
+router.post('/bodega', function (req, res) {
+  query = "select material.Nombre, bodega.Cantidad, material.Descripcion from bodega, material, obra, `bodeguero de obra` where usuario_id = " + req.body.id;
+  query += " and `bodeguero de obra_id` = id_bodeguero_obra  and material_id = id_material and id_obra = obra_id";
+  connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        return res.send(JSON.stringify(results));
+  });
 });
 
 router.post('/encontrar_bc', function (req, res) {
@@ -35,7 +44,6 @@ router.post('/encontrar_bc', function (req, res) {
    });
 });
 
-
 router.post('/encontrar_bc2', function (req, res) {
    query  = 'select * from `bodeguero central` where usuario_id = ' + req.body.id ;
    console.log(query);
@@ -44,7 +52,6 @@ router.post('/encontrar_bc2', function (req, res) {
          return res.send(JSON.stringify(results));
    });
 });
-
 
 
 router.post('/encontrar_ec', function (req, res) {
@@ -66,9 +73,6 @@ router.post('/encontrar_id', function (req, res) {
    });
 });
 
-
-
-
 router.post('/encontrar_id2', function (req, res) {
    query  = 'select * from `encargado de compra` where usuario_id = ' + req.body.id ;
    console.log(query);
@@ -80,9 +84,8 @@ router.post('/encontrar_id2', function (req, res) {
 
 
 router.post('/encontrar_solicitudes', function (req, res) {
-   query  = 'SELECT id_material, id_obra, Apellido, `material`.Cantidad AS cantidad_bodega,`material_solicitud`.Cantidad AS cantidad_solicitud, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero, `obra`.Nombre as nombre_obra, Ubicacion from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario`, `obra`,`material` where `bodeguero central_id` = ' + req.body.id;
+   query  = 'SELECT id_solicitud_material, id_material, id_obra, Apellido, `material`.Cantidad AS cantidad_bodega,`material_solicitud`.Cantidad AS cantidad_solicitud, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero, `obra`.Nombre as nombre_obra, Ubicacion from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario`, `obra`,`material` where `bodeguero central_id` = ' + req.body.id;
    query += ' and `id_solicitud_material` = `solicitud de material_id` and `solicitud de material`.`bodeguero de obra_id` = `id_bodeguero_obra` and `usuario_id` = `id_usuario` and `id_bodeguero_obra` = `obra`.`bodeguero de obra_id` and `material_solicitud`.Nombre = `material`.Nombre';
-   console.log(query);
    connection.query(query, function (error, results, fields) {
          if (error) throw error;
          return res.send(JSON.stringify(results));
@@ -116,8 +119,9 @@ router.post('/usuario', function (req, res) {
       });
 });
 
-router.post('/bodega', function (req, res) {
-  consulta = 'insert into Material (Nombre, Cantidad, Descripcion) values ("' + req.body.nombre + '" ,' + req.body.cantidad + ' ,"' + req.body.descripcion +'" )';
+router.post('/materiales', function (req, res) {
+  consulta = 'insert into `mydb`.material (Nombre, Cantidad, Descripcion) values ("' + req.body.nombre + '" ,' + req.body.cantidad + ' ,"' + req.body.descripcion +'" )';
+  console.log(consulta);
   connection.query(consulta, function (error, results, fields) {
   if (error) throw error;
   return res.send("¡Material creado exitosamente!");
@@ -133,7 +137,7 @@ router.post('/agregar', function (req, res) {
 });
 
 router.post('/bodega/borrar', function (req, res) {
-  consulta = 'DELETE from  Material where ID_MATERIAL=' + req.body.ID;
+  consulta = 'DELETE from  `mydb`.material where id_material = ' + req.body.ID;
   connection.query(consulta, function (error, results, fields) {
   if (error) throw error;
   return res.send("¡Material eliminado exitosamente!");
@@ -153,7 +157,14 @@ router.post('/crearobra', function (req, res) {
 });
 
 router.get('/obra', function (req, res) {
-   connection.query('select * from obra', function (error, results, fields) {
+   connection.query('select * from obra where `bodeguero de obra_id` is NULL', function (error, results, fields) {
+   if (error) throw error;
+   res.send(JSON.stringify(results));
+ });
+});
+
+router.get('/obras_asignadas', function (req, res) {
+   connection.query('select `obra`.Nombre AS nombre_obra, `usuario`.Nombre AS nombre_bodeguero, Apellido, Descripcion, Ubicacion from obra, `bodeguero de obra`, usuario where id_obra = id_bodeguero_obra and usuario_id = id_usuario', function (error, results, fields) {
    if (error) throw error;
    res.send(JSON.stringify(results));
  });
@@ -242,9 +253,6 @@ router.post('/solicitud_material', function(req, res) {
   });
 });
 
-
-
-
 router.post('/solicitud_compra', function(req, res) {
   query = "INSERT INTO `mydb`.`solicitud de compra` (`bodeguero central_id`, `encargado de compra_id`, Fecha) VALUES (";
   query += req.body.id_bc  + ', ';
@@ -266,4 +274,29 @@ router.post('/solicitud_compra', function(req, res) {
   });
 });
 
+router.post('/asignar_material', function(req, res) {
+  query = "INSERT into `mydb`.`bodega` (`obra_id`,`material_id`,`cantidad`) VALUES (";
+  query += req.body.obra_id  + ', ';
+  query += req.body.material_id  + ', ';
+  query += req.body.cantidad_asignada  + ')';
+  console.log(query);
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    if (results) {
+      query2 = "UPDATE `mydb`.`material` set Cantidad = " + req.body.update_material + " where id_material = " + req.body.material_id;
+      console.log(query2);
+      connection.query(query2, function (error, results, fields) {
+        if (error) throw error;
+        if (results){
+          query3 = "UPDATE `mydb`.`material_solicitud` set Cantidad = " + req.body.update_solicitud + " where `solicitud de material_id` = " + req.body.id_solicitud_material;
+          console.log(query3);
+          connection.query(query3, function (error, results, fields) {
+            if (error) throw error;
+            if (results) return res.send("¡Material asignado correctamente!");
+          });
+        }
+      });
+    }
+  });
+});
 module.exports = router;

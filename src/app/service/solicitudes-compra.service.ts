@@ -13,4 +13,7 @@ export class SolicitudesCompraService {
   encontrarSolicitudesCompra(id:any){
     return this.http.post('/api/encontrar_solicitudescompra', {"id": id});
   }
+  encontrarProveedores(){
+    return this.http.get('http://localhost:3004/proveedor');
+  }
 }

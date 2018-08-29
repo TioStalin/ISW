@@ -6,14 +6,16 @@ export class BodegaService {
 
   constructor(private http: Http) { }
 
-  aux: any = [];
+  obtenerMateriales(){
+    return this.http.get('/api/materiales');
+  }
 
-  obtenerBodega(){
-    return this.http.get('/api/bodega');
+  obtenerBodega(id: Number){
+    return this.http.post('/api/bodega', {"id": id});
   }
 
   crearMaterial(nombre: String, cantidad: Number, descripcion: String){
-    return this.http.post('/api/bodega', {"nombre": nombre, "cantidad": cantidad, "descripcion": descripcion});
+    return this.http.post('/api/materiales', {"nombre": nombre, "cantidad": cantidad, "descripcion": descripcion});
   }
 
   borrarMaterial(ID: Number){

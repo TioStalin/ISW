@@ -17,6 +17,7 @@ export class ObraComponent implements OnInit {
   private bodegueros: any;
   private bc: any;
   private asignar: any = [];
+  private obras_asignadas: any;
 
   constructor(public loginService: LoginService,
               private router: Router,
@@ -36,6 +37,12 @@ export class ObraComponent implements OnInit {
       .subscribe(data => {
         this.obras = data;
         console.log(this.obras);
+      });
+    this.obrita.obtenerObrasAsignadas()
+      .map(res => res.json())
+      .subscribe(data => {
+        this.obras_asignadas = data;
+        console.log(this.obras_asignadas);
       });
     this.userService.obtenerBodegueros()
       .map(res => res.json())

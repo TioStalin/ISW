@@ -2,7 +2,7 @@
   "proveedor": [
     { "id": 1, "nombre": "Gustavo Barrios", "direccion": "Sienna 8998", "contacto": "gus@test.cl", "rut": "19.309.596-8", "telefono": "+596 9696 1132"},
     { "id": 2, "nombre": "Tapia Inc.", "direccion": "Av. Central 222", "contacto": "ti@test.cl", "rut": "19.514.544-k", "telefono": "+596 7139 3188"},
-    { "id": 3, "nombre": "Terry Ltda.", "direccion": "Av. Central 222", "contacto": "ti@test.cl", "rut": "19.514.544-k", "telefono": "+596 7139 3188" }
+    { "id": 3, "nombre": "Terry Ltda.", "direccion": "Poeta Miguel Hernandez 11063", "contacto": "terry@test.cl", "rut": "19.481.687-1", "telefono": "+596 9237 6173" }
   ],
   "materiales": [
     { "id": 1, "nombre": "material 1", "precio": 100,  "proveedor_id": 1 },

@@ -25,5 +25,8 @@ export class ObraService {
       "id_bodeguero_central": asignar.id_bodeguero_central
     });
   }
+  obtenerObrasAsignadas(){
+    return this.http.get('/api/obras_asignadas');
+  }
 
 }

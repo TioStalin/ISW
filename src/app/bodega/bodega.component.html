@@ -1,7 +1,7 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <div class="col s6" style="float: left;">
+      <div *ngIf="bodega" class="col s6" style="float: left;">
         <table class="highlight">
           <thead>
             <tr>
@@ -17,7 +17,7 @@
               <td>{{resultados.Cantidad}}</td>
               <td *ngIf = "resultados.Descripcion == null || resultados.Descripcion == ''">Sin Descripción</td>
               <td *ngIf = "resultados.Descripcion != null && resultados.Descripcion != ''">{{resultados.Descripcion}}</td>
-              <td *ngIf = "cargo == 2"><i (click)="borrarMaterial(resultados.ID_MATERIAL)" class="material-icons" style="cursor:pointer;">clear</i></td>
+              <td *ngIf = "cargo == 2"><i (click)="borrarMaterial(resultados.id_material)" class="material-icons" style="cursor:pointer;">clear</i></td>
             </tr>
           </tbody>
         </table>
@@ -53,6 +53,9 @@
           <button (click)="crearMaterial()" class="btn waves-effect waves-light">Añadir
             <i class="material-icons right">add</i>
           </button>
+        </div>
+        <div style="margin-top:20px">
+          <span style="color: #07b507;">{{text}}</span>
         </div>
       </form>
       </div>

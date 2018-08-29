@@ -16,6 +16,8 @@ export class BodegaComponent implements OnInit {
   public nombre: string = '';
   public cantidad: number;
   public descripcion: string = '';
+  public text: any;
+  public id: any;
 
   constructor(public loginService:LoginService,
               private router:Router,
@@ -27,11 +29,24 @@ export class BodegaComponent implements OnInit {
       this.router.navigate(['./home']);
     }
     this.cargo = data.cargo;
-    this.bodegaService.obtenerBodega()
-      .map(res => res.json())
-      .subscribe(bodega => {
-        this.bodega = bodega;
-      });
+    this.id = data.id;
+    if(this.cargo == 2 || this.cargo == 1 || this.cargo == 4){
+      this.bodegaService.obtenerMateriales()
+        .map(res => res.json())
+        .subscribe(bodega => {
+          this.bodega = bodega;
+          console.log(this.bodega);
+        });
+    }
+    if(this.cargo == 3){
+      this.bodegaService.obtenerBodega(this.id)
+        .map(res => res.json())
+        .subscribe(bodega => {
+          this.bodega = bodega;
+          console.log(this.bodega);
+        });
+    }
+
   }
 
   crearMaterial(){
@@ -43,24 +58,25 @@ export class BodegaComponent implements OnInit {
     }
     else{
       this.bodegaService.crearMaterial(this.nombre, this.cantidad, this.descripcion)
-        .subscribe(res => console.log(res));
-
-      this.bodegaService.obtenerBodega()
-        .map(res => res.json())
-        .subscribe(bodega => {
-          this.bodega = bodega;
+        .subscribe(data => {
+          this.text = data.text();
+          this.bodegaService.obtenerMateriales()
+            .map(res => res.json())
+            .subscribe(bodega => {
+              this.bodega = bodega;
+            });
         });
     }
   }
   borrarMaterial(ID: Number){
-    console.log(ID);
     this.bodegaService.borrarMaterial(ID)
-      .subscribe(res => console.log(res));
-
-    this.bodegaService.obtenerBodega()
-      .map(res => res.json())
-      .subscribe(bodega => {
-        this.bodega = bodega;
+      .subscribe(data => {
+        this.text = data.text();
+        this.bodegaService.obtenerMateriales()
+          .map(res => res.json())
+          .subscribe(bodega => {
+            this.bodega = bodega;
+          });
       });
   }
 }

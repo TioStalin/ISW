@@ -13,6 +13,8 @@ export class SolicitudesCompraComponent implements OnInit {
 
   private solicitudes: any;
   private bodega: any;
+  private materiales: any;
+  private proveedores: any;
 
   constructor(public loginService: LoginService,
               private router: Router,
@@ -38,11 +40,18 @@ export class SolicitudesCompraComponent implements OnInit {
             console.log(this.solicitudes);
           });
       });
-    this.bodegaService.obtenerBodega()
+    this.bodegaService.obtenerMateriales()
       .map(res => res.json())
       .subscribe(bodega => {
         this.bodega = bodega;
       });
+    this.solicitudesCompra.encontrarProveedores()
+      .map(res => res.json())
+      .subscribe(data => this.proveedores = data);
+
+    this.solicitudesCompra.encontrarMateriales()
+      .map(res => res.json())
+      .subscribe(data => this.materiales = data);
 
   }
 }

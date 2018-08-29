@@ -5,6 +5,7 @@
       <table *ngIf="solicitudes" class="highlight">
         <thead>
           <tr>
+              <th>N° de solicitud</th>
               <th>Bodeguero de obra</th>
               <th>Producto</th>
               <th>Cantidad</th>
@@ -15,6 +16,7 @@
         </thead>
         <tbody>
           <tr *ngFor = "let resultados of solicitudes">
+            <td>{{resultados.id_solicitud_material}}</td>
             <td>{{resultados.nombre_bodeguero}} {{resultados.Apellido}}</td>
             <td>{{resultados.nombre_material}}</td>
             <td>{{resultados.cantidad_solicitud}}</td>
@@ -26,38 +28,34 @@
       </table>
     </div>
 
-    <div *ngIf="bodega && obras" class = "row">
+    <div *ngIf="solicitudes" class = "row">
       <h3>Asignar material</h3>
-      <form class="col s12">
+      <form class="col s12" #f = "ngForm" novalidate>
         <div class="input-field col s12">
           <i class="material-icons prefix">category</i>
-          <select materialize="material_select" [(ngModel)]="asignar.material" type="text" name="form_cantidad" #m_cond = "ngModel" required>
-              <option value="" disabled selected>Elegir material</option>
-              <option *ngFor="let m of solicitudes" [ngValue]="m">
-                  {{m.nombre_material}}
+          <select materialize="material_select" [(ngModel)]="asignar.solicitud" type="number" name="form_solicitud" #s_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir solicitud</option>
+              <option *ngFor="let s of solicitudes" [ngValue]="s">
+                  {{s.id_solicitud_material}}
               </option>
           </select>
         </div>
-        <div *ngIf="asignar.material" class="input-field col s12">
+        <div *ngIf="asignar.solicitud" class="input-field col s12">
           <i class="material-icons prefix">exposure_plus_1</i>
-          <label for="Cantidad">Cantidad(max: {{asignar.material.cantidad_bodega}})</label>
+          <label for="Cantidad">Cantidad(max: {{asignar.solicitud.cantidad_bodega}})</label>
           <input [(ngModel)]="asignar.cantidad" name="form_cantidad" type="number" class="form-control" #c_cond = "ngModel" required>
         </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">category</i>
-          <select materialize="material_select" [(ngModel)]="asignar.id_obra" type="text" name="form_obra" #o_cond = "ngModel" required>
-              <option value="" disabled selected>Elegir Obra</option>
-              <option *ngFor="let o of solicitudes" [value]="o.id_obra">
-                  {{o.nombre_obra}}
-              </option>
-          </select>
+        <div *ngIf="error_cantidad">
+          <span style="color: #d21022;">{{error_cantidad}}</span>
         </div>
 
-        <button (click)="asginarMaterial()" class="btn waves-effect waves-light">Asignar
+        <button (click)="formulario()" class="btn waves-effect waves-light" [disabled]="!f.form.valid || loading">Asignar
           <i class="material-icons right">add</i>
         </button>
+        <div style="margin-top:20px">
+          <span style="color: #07b507;">{{text}}</span>
+        </div>
       </form>
     </div>
-
   </div>
 </div>
