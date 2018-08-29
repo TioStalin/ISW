@@ -9,6 +9,8 @@ import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.compo
 import { ObraComponent } from './obra/obra.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes-material.component';
+import { SolicitarcompraComponent } from './solicitarcompra/solicitarcompra.component';
+import { SolicitudesCompraComponent } from './solicitudes-compra/solicitudes-compra.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path: 'obra', component: ObraComponent},
   {path: 'solicitar_material', component: SolicitarComponent},
   {path: 'solicitudes_de_material', component: SolicitudesMaterialComponent},
+  {path: 'solicitar_compra', component: SolicitarcompraComponent},
+  {path: 'solicitudes_de_compra', component: SolicitudesCompraComponent},
   {path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

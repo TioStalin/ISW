@@ -35,6 +35,28 @@ router.post('/encontrar_bc', function (req, res) {
    });
 });
 
+
+router.post('/encontrar_bc2', function (req, res) {
+   query  = 'select * from `bodeguero central` where usuario_id = ' + req.body.id ;
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+
+
+router.post('/encontrar_ec', function (req, res) {
+   query  = 'select * from `encargado de compra` ' ;
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+
 router.post('/encontrar_id', function (req, res) {
    query  = 'select * from `bodeguero central` where usuario_id = ' + req.body.id ;
    console.log(query);
@@ -44,9 +66,34 @@ router.post('/encontrar_id', function (req, res) {
    });
 });
 
+
+
+
+router.post('/encontrar_id2', function (req, res) {
+   query  = 'select * from `encargado de compra` where usuario_id = ' + req.body.id ;
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+
 router.post('/encontrar_solicitudes', function (req, res) {
    query  = 'select Apellido, Cantidad, Fecha, `material_solicitud`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero from `solicitud de material`, `material_solicitud`, `bodeguero de obra`, `usuario` where `bodeguero central_id` = ' + req.body.id;
    query += ' and `id_solicitud_material` = `solicitud de material_id` and `bodeguero de obra_id` = `id_bodeguero_obra` and `usuario_id` = `id_usuario`';
+   console.log(query);
+   connection.query(query, function (error, results, fields) {
+         if (error) throw error;
+         return res.send(JSON.stringify(results));
+   });
+});
+
+
+
+router.post('/encontrar_solicitudescompra', function (req, res) {
+   query  = 'select Apellido, Cantidad, Fecha, `material_compra`.Nombre AS nombre_material, `usuario`.Nombre AS nombre_bodeguero from `solicitud de compra`, `material_compra`, `bodeguero central`, `usuario` where `encargado de compra_id` = ' + req.body.id;
+   query += ' and `id_solicitud_compra` = `solicitud de compra_id` and `bodeguero central_id` = `id_bodeguero_central` and `usuario_id` = `id_usuario`';
    console.log(query);
    connection.query(query, function (error, results, fields) {
          if (error) throw error;
@@ -182,10 +229,36 @@ router.post('/solicitud_material', function(req, res) {
   query += '"' + req.body.fecha + '")';
   connection.query(query, function (error, results, fields) {
     if (error) throw error;
-    query2 = "INSERT INTO `mydb`.`material_solicitud` (`solicitud de material_id`, `Nombre`, `Cantidad`) VALUES (";
+    query2 = "INSERT INTO `mydb`.`material_solicitud` (`solicitud de material_id`, `Nombre`, `Cantidad`,`Descripcion`) VALUES (";
     query2 += results.insertId + ', ';
     query2 += '"' + req.body.nombre + '", ';
-    query2 += req.body.cantidad + ')';
+    query2 +=  req.body.cantidad + ', ';
+    query2 += '"' + req.body.descripcion + '")';
+    console.log(query2);
+    connection.query(query2, function (error, results, fields) {
+      if (error) throw error;
+      if (results) return res.send("¡Material solicitado correctamente!");
+    });
+  });
+});
+
+
+
+
+router.post('/solicitud_compra', function(req, res) {
+  query = "INSERT INTO `mydb`.`solicitud de compra` (`bodeguero central_id`, `encargado de compra_id`, Fecha) VALUES (";
+  query += req.body.id_bc  + ', ';
+  query += req.body.id_ec  + ', ';
+  query += '"' + req.body.fecha + '")';
+  console.log(query)
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    query2 = "INSERT INTO `mydb`.`material_compra` (`solicitud de compra_id`, `Nombre`, `Cantidad`, `Descripcion`) VALUES (";
+    query2 += results.insertId + ', ';
+    query2 += '"' + req.body.nombre + '", ';
+    query2 += req.body.cantidad + ', ';
+    query2 += '"' + req.body.descripcion + '")';
+    console.log(query2)
     connection.query(query2, function (error, results, fields) {
       if (error) throw error;
       if (results) return res.send("¡Material solicitado correctamente!");

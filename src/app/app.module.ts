@@ -20,6 +20,10 @@ import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.compo
 import { ObraComponent } from './obra/obra.component';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes-material.component';
+import { SolicitarcompraComponent } from './solicitarcompra/solicitarcompra.component';
+import { SolicitarcompraService } from './service/solicitarcompra.service';
+import { SolicitudesCompraComponent } from './solicitudes-compra/solicitudes-compra.component';
+import { SolicitudesCompraService } from './service/solicitudes-compra.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes
     AgregarUsuarioComponent,
     ObraComponent,
     SolicitarComponent,
-    SolicitudesMaterialComponent
+    SolicitudesMaterialComponent,
+    SolicitarcompraComponent,
+    SolicitudesCompraComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { SolicitudesMaterialComponent } from './solicitudes-material/solicitudes
     ObraService,
     UsuarioService,
     SolicitarService,
-    SolicitudesMaterialService
+    SolicitudesMaterialService,
+    SolicitudesCompraService,
+    SolicitarcompraService
   ],
   bootstrap: [AppComponent]
 })
