@@ -2,8 +2,10 @@
 
 ## Como iniciar el proyecto
 
-Antes de iniciar el proyecto de debe usar `npm install -g json-server` para poder ingresar la API externa que se usará.\\
-En la terminal se debe usar `json-server --watch db.json --port 3004` para iniciar la API externa, para visualizarla, se tiene que abrir `localhost:3004` en el navegador.\\
+Antes de iniciar el proyecto de debe usar `npm install -g json-server` para poder ingresar la API externa que se usará.
+
+En la terminal se debe usar `json-server --watch db.json --port 3004` para iniciar la API externa, para visualizarla, se tiene que abrir `localhost:3004` en el navegador.
+
 En otra terminal se debe usar `ng build && node server` para construir el proyecto y unirlo a la base de datos, luego en el navegador abrir `localhost:3000` para poder visualizar el proyecto.
 
 ## Que lleva el proyecto
