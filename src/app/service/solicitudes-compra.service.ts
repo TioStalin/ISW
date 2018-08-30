@@ -19,4 +19,7 @@ export class SolicitudesCompraService {
   encontrarMateriales(){
     return this.http.get('http://localhost:3004/materiales');
   }
+  enviarOrden(model:any){
+    return this.http.post('http://localhost:3004/orden', {"material":model.nombre_material, "proveedor": model.resto.proveedor_id, "precio": model.resto.precio});
+  }
 }

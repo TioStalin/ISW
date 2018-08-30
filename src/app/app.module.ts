@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FilterByStatusPipe } from './solicitudes-compra/filtra.pipe';
 
 import { AppComponent } from './app.component';
 import { MaterializeModule } from 'angular2-materialize';
@@ -37,7 +38,8 @@ import { SolicitudesCompraService } from './service/solicitudes-compra.service';
     SolicitarComponent,
     SolicitudesMaterialComponent,
     SolicitarcompraComponent,
-    SolicitudesCompraComponent
+    SolicitudesCompraComponent,
+    FilterByStatusPipe
   ],
   imports: [
     BrowserModule,

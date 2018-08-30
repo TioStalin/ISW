@@ -23,9 +23,31 @@
       </table>
     </div>
 
-    <div class = "row">
+    <div *ngIf="aux" class = "row">
       <h3>Orden de compra</h3>
-      
+      <form (ngSubmit) = "f2.form.valid && enviar()" class="col s12" #f2 = "ngForm" novalidate>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">category</i>
+          <select materialize="material_select" [(ngModel)]="model.nombre_material" type="text" name="5" #oc1_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir material</option>
+              <option *ngFor="let m of aux" [value]="m.nombre">
+                  {{m.nombre}}
+              </option>
+          </select>
+        </div>
+        <div *ngIf="model.nombre_material">
+          <select materialize="material_select" [(ngModel)]="model.resto" type="text" name="6" #oc2_cond = "ngModel" required>
+              <option value="" disabled selected>Elegir Proveedor/precio</option>
+              <option *ngFor="let a of materiales | filterByArea: model.nombre_material" [ngValue]="a">
+                  {{a.proveedor_id}}/{{a.precio}}
+              </option>
+          </select>
+        </div>
+        <button class="btn waves-effect waves-light" [disabled]="!f2.form.valid">
+          Enviar
+          <i class="material-icons right">add</i>
+        </button>
+      </form>
     </div>
 
   </div>
